@@ -26,30 +26,7 @@
             }
         }
     </script>
-    <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAzRux4ii2GAjiSmlbi5fu-sFVx0kZLBqU",
-    authDomain: "nationaldatabase-3f813.firebaseapp.com",
-    databaseURL: "https://nationaldatabase-3f813-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "nationaldatabase-3f813",
-    storageBucket: "nationaldatabase-3f813.firebasestorage.app",
-    messagingSenderId: "820218669949",
-    appId: "1:820218669949:web:99e9414a4aa82f59acfa14",
-    measurementId: "G-RL65ECV08H"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         @media print {
             body * { visibility: hidden; }
@@ -801,7 +778,45 @@
             </div>
         </div>
     </div>
+<div id="admin-dashboard-view" style="display: none;">
+  <h2>Central Control & System Health</h2>
+  
+  <div class="metrics-grid">
+    <div class="card">Total System Records: <span id="stat-total-records">0</span></div>
+    <div class="card">Database Status: <span id="stat-db-status" class="status-online">CONNECTED</span></div>
+  </div>
 
+  <section class="admin-section">
+    <h3>User Authorization Management</h3>
+    <table id="users-management-table">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="users-table-body"></tbody>
+    </table>
+  </section>
+
+  <section class="admin-section">
+    <h3>Central Audit Logs</h3>
+    <table id="audit-logs-table">
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>User</th>
+          <th>Action</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody id="audit-logs-body"></tbody>
+    </table>
+  </section>
+</div>
     <!-- ================= JAVASCRIPT LOGIC ================= -->
     <script>
         // System Users with Roles
